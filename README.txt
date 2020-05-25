@@ -20,6 +20,9 @@ cp env.sh.sample env.sh
 ./start-journalbeat.sh
 
 # Na hoście, którego metryki systemowe chcemy logować do ElasticSearcha
+# UWAGA: W katalogu bieżącym musi być plik metricbeat.docker.yml, którego właścicielem musi być ROOT
+sudo chown root.root metricbeat.docker.yml
+sudo chmod go-w metricbeat.docker.yml
 ./start-metricbeat.sh
 
 Sprawdzenie danych w ElasticSearch

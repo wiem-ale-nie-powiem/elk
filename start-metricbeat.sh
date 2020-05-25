@@ -6,6 +6,7 @@
 
 # Create the index pattern and load visualizations and machine learning jobs
 docker run \
+  --net=host \
   docker.elastic.co/beats/metricbeat:${VERSION} \
   setup -E setup.kibana.host=${KIBANA_HOST}:5601 \
   -E setup.ilm.overwrite=true \
@@ -13,6 +14,7 @@ docker run \
 
 # Run beat
 sudo docker run -d \
+  --net=host \
   --restart=unless-stopped \
   --name=metricbeat \
   --user=root \

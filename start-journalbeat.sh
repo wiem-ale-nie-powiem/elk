@@ -5,11 +5,12 @@
 # Co robią poniższe polecenia? Patrz https://www.elastic.co/guide/en/beats/journalbeat/current/running-on-docker.html
 
 # Create the index pattern and load visualizations and machine learning jobs
-docker run docker.elastic.co/beats/journalbeat:${VERSION} setup -E setup.ilm.overwrite=true -E setup.kibana.host=${KIBANA_HOST}:5601 -E output.elasticsearch.hosts=["${ES_HOST}:9200"]
+docker run --net=host docker.elastic.co/beats/journalbeat:${VERSION} setup -E setup.ilm.overwrite=true -E setup.kibana.host=${KIBANA_HOST}:5601 -E output.elasticsearch.hosts=["${ES_HOST}:9200"]
 
 # Run beat
 # Make sure you include the path to the host’s journal. The path might be /var/log/journal or /run/log/journal
 sudo docker run -d \
+  --net=host \
   --name=journalbeat \
   --restart=unless-stopped \
   --user=root \
