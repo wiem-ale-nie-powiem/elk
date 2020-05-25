@@ -13,6 +13,7 @@ docker run \
 
 # Run beat
 sudo docker run -d \
+  --restart=unless-stopped \
   --name=metricbeat \
   --user=root \
   --volume="$(pwd)/metricbeat.docker.yml:/usr/share/metricbeat/metricbeat.yml:ro" \

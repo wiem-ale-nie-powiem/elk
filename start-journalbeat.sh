@@ -11,6 +11,7 @@ docker run docker.elastic.co/beats/journalbeat:${VERSION} setup -E setup.ilm.ove
 # Make sure you include the path to the host’s journal. The path might be /var/log/journal or /run/log/journal
 sudo docker run -d \
   --name=journalbeat \
+  --restart=unless-stopped \
   --user=root \
   --volume="$(pwd)/journalbeat.docker.yml:/usr/share/journalbeat/journalbeat.yml:ro" \
   --volume="/var/log/journal:/var/log/journal" \
